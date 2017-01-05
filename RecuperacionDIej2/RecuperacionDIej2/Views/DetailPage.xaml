@@ -1,0 +1,57 @@
+﻿<Page
+    x:Class="RecuperacionDIej2.Views.DetailPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:vm="using:RecuperacionDIej2.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:RecuperacionDIej2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:clsMainPageVM/>
+    </Page.DataContext>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <AppBarButton Name="btnNuevo" Grid.Row="0" Icon="Refresh" Label="Nuevo" Command="{Binding crearCommand}"/>
+            <AppBarButton Name="btnGuardar" Icon="Save" Label="Guardar" Command="{Binding guardarCommand}" Click="btnGuardar_Click"/>
+            <AppBarButton Name="btnEliminar" Icon="Delete" Command="{Binding eliminarCommand}" Label="Eliminar"/>
+        </StackPanel>
+
+        <Grid Grid.Row="1" DataContext="{Binding personaSeleccionada}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="8*"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="Nombre: " Grid.Column="0" Grid.Row="0" Margin="12,8" VerticalAlignment="Center"/>
+            <TextBox Name="txtNombre" Grid.Column="1" Grid.Row="0" Margin="12,8" MaxHeight="36" Text="{Binding Nombre, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+
+            <TextBlock Text="Apellidos: " Grid.Column="0" Grid.Row="1" Margin="12,8" VerticalAlignment="Center"/>
+            <TextBox Name="txtApellidos" Grid.Column="1" Grid.Row="1" Margin="12,8" MaxHeight="36" Text="{Binding Apellidos, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+
+            <TextBlock Text="Fecha de nacimiento: " Grid.Column="0" Grid.Row="2" Margin="12,8" VerticalAlignment="Center"/>
+            <TextBox Name="txtFechaNac" Grid.Column="1" Grid.Row="2" Margin="12,8" MaxHeight="36" Text="{Binding FechaNac, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+
+            <TextBlock Text="Teléfono: " Grid.Column="0" Grid.Row="3" Margin="12,8" VerticalAlignment="Center"/>
+            <TextBox Name="txtTelefono" Grid.Column="1" Grid.Row="3" Margin="12,8" MaxHeight="36" Text="{Binding Telefono, Mode=TwoWay, UpdateSourceTrigger=Explicit}"/>
+
+            <StackPanel Orientation="Vertical" Grid.Row="4" Grid.ColumnSpan="2">
+                <TextBlock Text="Dirección: " Margin="12,20,12,0"/>
+                <TextBox Name="txtDireccion" Margin="12,0" Text="{Binding Direccion, Mode=TwoWay, UpdateSourceTrigger=Explicit}" MinHeight="160" TextWrapping="Wrap"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Page>
